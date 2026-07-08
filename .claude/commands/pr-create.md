@@ -76,3 +76,4 @@ PR 제목은 항상 아래 형식을 따른다.
 - push와 PR 생성은 되돌리기 어려운 작업이므로, 이 커맨드가 실행된 경우에 한해 진행한다.
 - force push, `git reset --hard` 등 파괴적인 명령은 사용하지 않는다.
 - 커밋할 필요가 없는 파일(빌드 산출물, `.env` 등)을 실수로 포함하지 않았는지 커밋 전에 반드시 확인한다.
+- **squash merge 시 주의**: GitHub은 PR에 커밋이 1개뿐이면 squash merge 커밋 메시지로 PR 제목이 아니라 그 커밋 메시지(`prefix: 요약`)를 그대로 재사용한다. 그대로 두면 main 히스토리에 `[prefix] 요약`이 아닌 `prefix: 요약` 형식이 남게 되므로, 이 PR을 머지할 때는 squash 커밋 제목을 PR 제목과 동일한 `[prefix] 요약` 형식으로 직접 지정해야 한다 (`gh pr merge <번호> --squash --subject "[prefix] 요약"` 또는 GitHub UI의 "Squash and merge" 확인 화면에서 커밋 제목을 직접 수정).
