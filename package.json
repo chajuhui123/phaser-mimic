@@ -22,16 +22,16 @@
     "typescript"
   ],
   "scripts": {
-    "dev": "node log.js dev & next dev -p 8080",
-    "build": "node log.js build & next build",
-    "dev-nolog": "next dev -p 8080",
-    "build-nolog": "next build"
+    "dev": "next dev -p 8080",
+    "build": "next build"
   },
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
     "next": "15.3.1",
-    "phaser": "4.0.0",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@types/node": "^20",
