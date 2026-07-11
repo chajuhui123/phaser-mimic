@@ -32,6 +32,14 @@ export const ATTACK_RANGE = 2.5;
 export const WARNING_RANGE = 6;
 export const CONTRIBUTION_RATE_PER_SEC = 10;
 
+export const MISSION_INTERVAL_MS = 20000;
+export const MISSION_TIME_LIMIT_MS = 8000;
+export const FORCED_TRANSFORM_DURATION_MS = 5000;
+export const MISSION_ZONE_RADIUS = 2;
+export const HOLD_STILL_REQUIRED_MS = 3000;
+export const JUMP_HEIGHT = 1.2;
+export const JUMP_DURATION_MS = 500;
+
 export function clamp(value: number, min: number, max: number): number {
     return Math.min(max, Math.max(min, value));
 }
