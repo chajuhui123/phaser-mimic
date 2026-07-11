@@ -13,9 +13,10 @@ import { RoleGeometry } from './RoleGeometry';
 
 interface NpcActorProps {
     entity: GameEntity;
+    onRef?: (id: string, group: Group | null) => void;
 }
 
-export function NpcActor({ entity }: NpcActorProps) {
+export function NpcActor({ entity, onRef }: NpcActorProps) {
     const groupRef = useRef<Group>(null!);
     const direction = useRef(randomNpcDirection());
     const changeInMs = useRef(randomNpcDirectionChangeInterval());
@@ -43,7 +44,13 @@ export function NpcActor({ entity }: NpcActorProps) {
     });
 
     return (
-        <group ref={groupRef} position={[entity.position.x, entity.position.y, entity.position.z]}>
+        <group
+            ref={(group) => {
+                groupRef.current = group as Group;
+                onRef?.(entity.id, group);
+            }}
+            position={[entity.position.x, entity.position.y, entity.position.z]}
+        >
             <RoleGeometry role="npc" />
         </group>
     );

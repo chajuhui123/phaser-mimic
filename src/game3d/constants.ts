@@ -27,6 +27,11 @@ export function randomNpcDirectionChangeInterval(): number {
 export const POINTER_LOOK_SENSITIVITY = 0.0025;
 export const PITCH_LIMIT = Math.PI / 2 - 0.05;
 
+export const SEEKER_MAX_HEALTH = 5;
+export const ATTACK_RANGE = 2.5;
+export const WARNING_RANGE = 6;
+export const CONTRIBUTION_RATE_PER_SEC = 10;
+
 export function clamp(value: number, min: number, max: number): number {
     return Math.min(max, Math.max(min, value));
 }
