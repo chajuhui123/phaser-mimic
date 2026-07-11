@@ -20,5 +20,3 @@ export const mockNpcs: GameEntity[] = [
     { id: 'npc-3', role: 'npc', position: { x: 6, y: 0, z: 4 } },
     { id: 'npc-4', role: 'npc', position: { x: 2, y: 0, z: -8 } },
 ];
-
-export const mockEntities: GameEntity[] = [mockPlayer, mockSeeker, ...mockNpcs];
