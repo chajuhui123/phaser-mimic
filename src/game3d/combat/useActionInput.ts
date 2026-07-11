@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 
-export function useAttackInput() {
+// 스페이스바/좌클릭은 역할에 따라 의미가 다르다: seeker는 공격, hider는 점프.
+export function useActionInput() {
     const pendingRef = useRef(false);
 
     useEffect(() => {
