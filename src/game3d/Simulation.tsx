@@ -23,6 +23,7 @@ import { ControllableRole } from './debug/useControlledRole';
 import { MissionZoneMarker } from './mission/MissionZoneMarker';
 import { TransformedGeometry } from './mission/TransformedGeometry';
 import { ActiveMission } from './mission/types';
+import { MatchPhase } from './match/types';
 
 const tmpForward = new Vector3();
 const tmpRight = new Vector3();
@@ -40,6 +41,8 @@ interface SimulationProps {
     transformSeed: number;
     onMissionTick: (deltaMs: number, hiderPosition: { x: number; z: number }) => void;
     onMissionComplete: () => void;
+    matchPhase: MatchPhase;
+    onMatchTick: (deltaMs: number) => void;
 }
 
 export function Simulation({
@@ -55,6 +58,8 @@ export function Simulation({
     transformSeed,
     onMissionTick,
     onMissionComplete,
+    matchPhase,
+    onMatchTick,
 }: SimulationProps) {
     const { camera } = useThree();
     const keysRef = useKeyboardState();
@@ -67,6 +72,13 @@ export function Simulation({
     const stillMs = useRef(0);
 
     useFrame((_, delta) => {
+        onMatchTick(delta * 1000);
+
+        if (matchPhase !== 'playing') {
+            if (warningOverlayRef.current) warningOverlayRef.current.style.opacity = '0';
+            return;
+        }
+
         const isHiderControlled = controlledRole === 'player' && !hiderEliminated;
         const activeGroup = controlledRole === 'player' ? playerRef.current : seekerRef.current;
         let moveLength = 0;

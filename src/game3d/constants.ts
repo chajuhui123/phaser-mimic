@@ -40,6 +40,15 @@ export const HOLD_STILL_REQUIRED_MS = 3000;
 export const JUMP_HEIGHT = 1.2;
 export const JUMP_DURATION_MS = 500;
 
+export const TICKET_MAX = 50;
+export const TICKET_COST_PER_MATCH = 5;
+// 실제로는 1시간당 1개지만, 로컬 개발/테스트에서 확인 가능하도록 짧게 잡는다.
+export const TICKET_REFILL_INTERVAL_MS = 30000;
+
+export const COUNTDOWN_SECONDS = 3;
+export const MATCH_DURATION_MS = 5 * 60 * 1000;
+export const SPECTATE_DURATION_MS = 2000;
+
 export function clamp(value: number, min: number, max: number): number {
     return Math.min(max, Math.max(min, value));
 }
