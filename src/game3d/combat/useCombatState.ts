@@ -18,6 +18,12 @@ export function useCombatState() {
         setContributionScore((prev) => prev + amount);
     }, []);
 
+    const reset = useCallback(() => {
+        setSeekerHealth(SEEKER_MAX_HEALTH);
+        setHiderEliminated(false);
+        setContributionScore(0);
+    }, []);
+
     return {
         seekerHealth,
         hiderEliminated,
@@ -25,5 +31,6 @@ export function useCombatState() {
         registerHiderHit,
         registerNpcMisattack,
         addContribution,
+        reset,
     };
 }

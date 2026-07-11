@@ -76,5 +76,6 @@ export function useMissionState() {
         transformSeed,
         tick,
         completeMission,
+        reset: startNextWaiting,
     };
 }
