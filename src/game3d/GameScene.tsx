@@ -1,7 +1,16 @@
 import { Canvas } from '@react-three/fiber';
+import { RoleMesh } from './entities/RoleMesh';
+import { mockEntities, mockPlayer, PLAYER_EYE_HEIGHT } from './mockData';
 
-const FIXED_CAMERA_POSITION: [number, number, number] = [0, 1.6, 6];
 const FLOOR_SIZE = 50;
+
+const FIXED_CAMERA_POSITION: [number, number, number] = [
+    mockPlayer.position.x,
+    PLAYER_EYE_HEIGHT,
+    mockPlayer.position.z,
+];
+
+const visibleEntities = mockEntities.filter((entity) => entity.role !== 'player');
 
 export function GameScene() {
     return (
@@ -18,6 +27,10 @@ export function GameScene() {
                 <planeGeometry args={[FLOOR_SIZE, FLOOR_SIZE]} />
                 <meshStandardMaterial color="#2a3b4d" />
             </mesh>
+
+            {visibleEntities.map((entity) => (
+                <RoleMesh key={entity.id} entity={entity} />
+            ))}
         </Canvas>
     );
 }
