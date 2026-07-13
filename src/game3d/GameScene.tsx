@@ -3,6 +3,7 @@ import type { Group } from 'three';
 import { Canvas } from '@react-three/fiber';
 import { NpcActor } from './entities/NpcActor';
 import { Simulation } from './Simulation';
+import { GrasslandBackground } from './environment/GrasslandBackground';
 import { DebugHud } from './debug/DebugHud';
 import { useControlledRole } from './debug/useControlledRole';
 import { useCombatState } from './combat/useCombatState';
@@ -17,14 +18,12 @@ import { CountdownOverlay } from './match/CountdownOverlay';
 import { MatchHud } from './match/MatchHud';
 import { SpectatorOverlay } from './match/SpectatorOverlay';
 import { ResultScreen } from './match/ResultScreen';
-import { TICKET_COST_PER_MATCH } from './constants';
-import { mockNpcs, mockPlayer, PLAYER_EYE_HEIGHT } from './mockData';
-
-const FLOOR_SIZE = 50;
+import { CAMERA_HEIGHT_ABOVE_GROUND, TICKET_COST_PER_MATCH } from './constants';
+import { mockNpcs, mockPlayer } from './mockData';
 
 const INITIAL_CAMERA_POSITION: [number, number, number] = [
     mockPlayer.position.x,
-    PLAYER_EYE_HEIGHT,
+    CAMERA_HEIGHT_ABOVE_GROUND,
     mockPlayer.position.z,
 ];
 
@@ -95,16 +94,12 @@ export function GameScene() {
             <Canvas
                 camera={{ position: INITIAL_CAMERA_POSITION, fov: 75 }}
                 style={{ width: '100%', height: '100%' }}
+                shadows
             >
-                <color attach="background" args={['#0b0f1a']} />
+                <GrasslandBackground />
 
-                <ambientLight intensity={0.6} />
-                <directionalLight position={[5, 10, 5]} intensity={1.2} />
-
-                <mesh rotation={[-Math.PI / 2, 0, 0]}>
-                    <planeGeometry args={[FLOOR_SIZE, FLOOR_SIZE]} />
-                    <meshStandardMaterial color="#2a3b4d" />
-                </mesh>
+                <ambientLight intensity={0.7} />
+                <directionalLight position={[5, 10, 5]} intensity={1.2} castShadow />
 
                 <Simulation
                     key={matchRunId}
