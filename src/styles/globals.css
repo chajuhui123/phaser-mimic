@@ -1,48 +1,41 @@
-body {
+html,
+body,
+#__next {
+    height: 100%;
     margin: 0;
     padding: 0;
-    color: rgba(255, 255, 255, 0.87);
-    background-color: #000000; 
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-#app {
-    width: 100%;
+body {
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    overscroll-behavior: none;
+}
+
+#__next {
     height: 100vh;
-    overflow: hidden;
+    height: 100dvh;
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.spritePosition {
-    margin: 10px 0 0 10px;
-    font-size: 0.8em;
+/* 모바일 세로 화면 전용 게임이므로, 데스크톱 브라우저에서도 세로 프레임 폭을 넘지 않는다. */
+.app-viewport {
+    position: relative;
+    width: 100%;
+    max-width: var(--portrait-viewport-max-width, 480px);
+    height: 100%;
+    overflow: hidden;
 }
 
-.button {
-    width: 140px;
-    margin: 10px;
-    padding: 10px;
-    background-color: #000000;
-    color: rgba(255, 255, 255, 0.87);
-    border: 1px solid rgba(255, 255, 255, 0.87);
-    cursor: pointer;
-    transition: all 0.3s;
-
-    &:hover {
-        border: 1px solid #0ec3c9;
-        color: #0ec3c9;
-    }
-
-    &:active {
-        background-color: #0ec3c9;
-    }
-
-    /* Disabled styles */
-    &:disabled {
-        cursor: not-allowed;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: rgba(255, 255, 255, 0.3);
-    }
+/* 실제로 가로 방향이 되어도 콘텐츠를 세로로 회전시켜 화면을 계속 채운다 (CSS 기반 화면 방향 고정). */
+.app-viewport--landscape-locked {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vh;
+    max-width: var(--portrait-viewport-max-width, 480px);
+    height: 100vw;
+    transform: translate(-50%, -50%) rotate(var(--lock-rotate, -90deg));
 }
