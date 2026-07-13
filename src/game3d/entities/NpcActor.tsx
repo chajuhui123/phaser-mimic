@@ -9,7 +9,7 @@ import {
     randomNpcDirection,
     randomNpcDirectionChangeInterval,
 } from '../constants';
-import { RoleGeometry } from './RoleGeometry';
+import { BlockCharacter } from './BlockCharacter';
 
 interface NpcActorProps {
     entity: GameEntity;
@@ -51,7 +51,7 @@ export function NpcActor({ entity, onRef }: NpcActorProps) {
             }}
             position={[entity.position.x, entity.position.y, entity.position.z]}
         >
-            <RoleGeometry role="npc" />
+            <BlockCharacter role="npc" trackRef={groupRef} />
         </group>
     );
 }
